@@ -32,7 +32,7 @@ def y_predict():
     print(prediction)
     output=prediction[0]
     
-    if(output==1):
+    if(output==0):
         pred="NO ckd"
     else:
         pred="ckd"
