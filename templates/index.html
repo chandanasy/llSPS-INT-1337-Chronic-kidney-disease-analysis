@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Allerta+Stencil" type='text/css' />
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+    /*CSS code for button */
+    body {
+     font-family: 'Helvetica';
+     color:black;
+     background-image:url('static/images/bg.jpg');
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     background-size: cover:
+     }
+     
+     /*CSS code for button */
+     .button_css {
+     color: #494949 !important;
+     text-transform: uppercase;
+     text-decoration: none;
+     background: #ffffff;
+     padding: 20px;
+     border: 4px solid #494949 !important;
+     display: inline-block;
+     transition: all 0.4s ease 0s;
+     }
+     
+     .button_css:hover {
+     color: #ffffff !important;
+     background: #f6b93b;
+     border-color: #f6b93b !important;
+     transition: all 0.4s ease 0s;
+     }
+     
+     .w3-myfont {
+  font-family:"Arial", sans-serif;
+}
+    .w3-btn {width:150px;
+    margin-bottom:10px;
+    }
+     
+     
+}
+</style>
+</head>
+
+<body>
+
+    <div class="w3-container w3-center ">
+    <img class="w3-animate-fading" src="static/images/banner.png"  alt="Responsive image" style="width:100% \9">
+    </div>
+
+    <div class="w3-container w3-center w3-animate-top w3-myfont">
+    <p class="w3-xxxlarge";><b>CKD Prediction</b></p>
+	<p class="w3-xxlarge"><b>This program classifies patients as having chronic kidney disease (ckd) or not.</b></p>
+    
+     
+	
+	<div class="login w3-myfont">
+	
+     <!-- Main Input For Receiving Query to our ML -->
+    <center>
+    <form action="{{ url_for('y_predict')}}"method="post">
+        <div class="w3-container w3-center w3-animate-left">
+        <h1>Enter the values of ckd features </h1>
+        </div>
+
+	
+		
+    	<input type="text" name="age" placeholder="Age" required="required" />
+        <input type="text" name="bp" placeholder="Blood Pressure" required="required" />
+		<input type="text" name="sg" placeholder="Specific Gravity" required="required" />
+		<input type="text"  name="al" placeholder="Albumin" required="required" />
+		<input type="text" name="su" placeholder="Sugar" required="required" />
+		<label><input list="normal"  type="text" name="rbc" placeholder="Red blood cells" required="required"></label>
+		<br>
+		<br>
+		<br>
+		<label><input list="normal"  type="text" name="pc" placeholder="Pus cell" required="required"></label>
+		<label><input list="present" type="text" name="pcc" placeholder="Pus cell clumps" required="required"></label>
+		<label><input list="present" type="text" name="ba" placeholder="Bacteria" required="required"></label>
+		<input type="text" name="bgr" placeholder="Blood Glucose Random" required="required" />
+		<input type="text" name="bu" placeholder="Blood Urea" required="required" />
+		<input type="text" name="sc" placeholder="Serum creatinine" required="required" />
+		<br>
+		<br>
+		<br>
+		<input type="text" name="sod" placeholder="Sodium" required="required" />
+		<input type="text" name="pot" placeholder="Potassium" required="required" />
+		<input type="text" name="hemo" placeholder="Haemoglobin" required="required" />
+		<input type="text" name="pcv" placeholder="Packed Cell Volume" required="required" />
+		<input type="text" name="wc" placeholder="White blood cell count" required="required" />
+		<input type="text" name="rc" placeholder="Red blood cell count" required="required" />
+		<br>
+		<br>
+		<br>
+		<label><input list="yesorno"  type="text" name="htn" placeholder="Hypertension" required="required"></label>
+		<label><input list="yesorno"  type="text" name="dm" placeholder="Diabetes mellitus" required="required"></label>
+		<label><input list="yesorno"  type="text" name="cad" placeholder="Coronary Artery Disease" required="required"></label>
+		<label><input list="goodorpoor"  type="text" name="appet" placeholder="Appetite" required="required"></label>
+		<label><input list="yesorno"  type="text" name="pe" placeholder="Pedal Edema" required="required"></label>
+		<label><input list="yesorno"  type="text" name="ane" placeholder="Anemia" required="required"></label>
+		<br>
+		<br>
+		
+<datalist id="yesorno" >
+   <option value="1">Yes</option>
+   <option value="0">No</option>
+ </datalist>
+ <datalist id="goodorpoor" >
+    <option value="1">good</option>
+    <option value="0">poor</option>
+  </datalist>
+  <datalist id="present" >
+     <option value="1">present</option>
+     <option value="0">not present</option>
+   </datalist>
+   <datalist id="normal" >
+      <option value="1">normal</option>
+      <option value="0">abnormal</option>    </datalist>		
+        
+        <p><button  type="submit" style="width:20%" class="w3-button w3-block w3-black w3-round-xxlarge w3-border-white w3-round-large"><b>Predict</b></button></p>
+        
+        
+        </div>
+    </form>
+    </center>
+
+   <br>
+   <br>
+<div>
+    <center>
+    
+  <h1>{{ prediction_text }}</h1>
+  </center>
+</div>
+<div class="w3-panel w3-pink w3-card-4 w3-animate-fading">
+    <p><b>There is no cure for this disease and early detection is the key to prevent it's progression</b></p>
+  </div>
+
+
+</body>
+</html>
